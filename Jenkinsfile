@@ -47,7 +47,7 @@ pipeline {
                  transfers: [
                   sshTransfer(
                    sourceFiles: "publish/*",
-                   remoteDirectory: "/var/www/html/futterbock/",
+                   remoteDirectory: "www/futterbock/",
                    execCommand: "sudo systemctl restart kestrel-futterbock.service"
                   )
                  ])
