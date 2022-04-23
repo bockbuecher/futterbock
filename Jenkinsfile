@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Restore packages'){
             steps{
-               sh 'dotnet restore Futterbock.sln'
+               sh 'dotnet restore Futterbock.sln -r linux-x64'
             }
         }
         stage('Clean'){
