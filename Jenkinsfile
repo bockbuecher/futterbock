@@ -32,9 +32,28 @@ pipeline {
         stage('Publish'){
             steps {
                 sh 'dotnet publish -c Release -r linux-x64 --no-restore --self-contained=false /p:PublishSingleFile=true -o publish/'
-                sh 'scp publish/* phlaym@phlaym.net:~/www/futterbock/'
+                /*sh 'scp publish/* phlaym@phlaym.net:~/www/futterbock/'*/
                 sh 'ssh phlaym@phlaym.net sudo systemctl restart kestrel-futterbock.service'
             }
+        }
+        stage('Deploy'){
+            /*step([$class: 'BapSshPromotionPublisherPlugin'])*/
+            script {
+              sshPublisher(
+               continueOnError: false, failOnError: true,
+               publishers: [
+                sshPublisherDesc(
+                 configName: "phlaym",
+                 verbose: true,
+                 transfers: [
+                  sshTransfer(
+                   sourceFiles: "publish/*",
+                   remoteDirectory: "~/www/futterbock/",
+                   execCommand: "sudo systemctl restart kestrel-futterbock.service"
+                  )
+                 ])
+               ])
+             }
         }
     }
 }
