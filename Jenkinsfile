@@ -24,14 +24,14 @@ pipeline {
                sh 'dotnet clean Futterbock.sln --configuration Release'
             }
         }
-        stage('Build'){
+        /*stage('Build'){
             steps {
                 sh 'dotnet build Futterbock.sln -c Release -r linux-x64 --no-restore'
             }
-        }
+        }*/
         stage('Publish'){
             steps {
-                sh 'dotnet publish -c Release -r linux-x64 --no-build --self-contained=false /p:PublishSingleFile=true -o publish/'
+                sh 'dotnet publish -c Release -r linux-x64 --no-restore --self-contained=false /p:PublishSingleFile=true -o publish/'
                 sh 'scp publish/* phlaym@phlaym.net:~/www/futterbock/'
                 sh 'ssh phlaym@phlaym.net sudo systemctl restart kestrel-futterbock.service'
             }
