@@ -4,6 +4,9 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: "100"))
         skipDefaultCheckout(true)
     }
+    triggers {
+        pollSCM("H * * * *")
+    }
     stages {
         stage('Checkout'){
             steps{
@@ -28,7 +31,7 @@ pipeline {
         }
         stage('Publish'){
             steps {
-                sh 'sudo dotnet publish -c Release -r linux-x64 --no-build --self-contained=false /p:PublishSingleFile=true -o publish/'
+                sh 'dotnet publish -c Release -r linux-x64 --no-build --self-contained=false /p:PublishSingleFile=true -o publish/'
                 sh 'scp publish/* phlaym@phlaym.net:~/www/futterbock/'
                 sh 'ssh phlaym@phlaym.net sudo systemctl restart kestrel-futterbock.service'
             }
