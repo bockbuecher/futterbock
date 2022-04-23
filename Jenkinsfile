@@ -48,7 +48,7 @@ pipeline {
                   sshTransfer(
                    sourceFiles: "publish/*",
                    remoteDirectory: "www/futterbock/",
-                   removePrefix: "publish"
+                   removePrefix: "publish",
                    execCommand: "sudo systemctl restart kestrel-futterbock.service"
                   )
                  ])
