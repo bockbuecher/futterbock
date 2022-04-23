@@ -44,8 +44,7 @@ namespace Futterbock
                 {
                     options.PreSerializeFilters.Add((swagger, httpReq) =>
                     {
-                        var scheme = httpReq.Host.Host.StartsWith("localhost", StringComparison.OrdinalIgnoreCase) ? "http" : "https";
-                        swagger.Servers = new List<OpenApiServer>() { new OpenApiServer() { Url = $"{scheme}://{httpReq.Host}" } };
+                        swagger.Servers = new List<OpenApiServer>() { new OpenApiServer() { Url = $"{httpReq.Scheme}://{httpReq.Host}" } };
                     });
                 });
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Futterbock v1"));
