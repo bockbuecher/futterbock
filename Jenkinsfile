@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Build'){
             steps {
-                sh 'dotnet build Futterbock.sln --configuration Release --no-restore'
+                sh 'dotnet build Futterbock.sln -c Release -r linux-x64 --no-restore'
             }
         }
         stage('Publish'){
