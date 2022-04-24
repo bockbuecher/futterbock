@@ -32,6 +32,18 @@ pipeline {
         stage('Deploy'){
             steps {
               sshPublisher(
+                 continueOnError: false, failOnError: true,
+                 publishers: [
+                  sshPublisherDesc(
+                   configName: "phlaym",
+                   verbose: true,
+                   transfers: [
+                    sshTransfer(
+                     execCommand: "rm www/futterbock/Futterbock/*"
+                    )
+                   ])
+                 ])
+              sshPublisher(
                continueOnError: false, failOnError: true,
                publishers: [
                 sshPublisherDesc(
@@ -42,7 +54,7 @@ pipeline {
                    sourceFiles: "publish/*",
                    remoteDirectory: "www/futterbock/",
                    removePrefix: "publish",
-                   execCommand: "sudo systemctl restart kestrel-futterbock.service && chmod +x Futterbock"
+                   execCommand: "sudo systemctl restart kestrel-futterbock.service && chmod +x www/futterbock/Futterbock"
                   )
                  ])
                ])
