@@ -42,9 +42,11 @@ namespace Futterbock
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger(options =>
                 {
+                    // Force HTTPs on non-localhost machines
                     options.PreSerializeFilters.Add((swagger, httpReq) =>
                     {
-                        swagger.Servers = new List<OpenApiServer>() { new OpenApiServer() { Url = $"{httpReq.Scheme}://{httpReq.Host}" } };
+                        var scheme = httpReq.Host.Host.StartsWith("localhost", StringComparison.OrdinalIgnoreCase) ? httpReq.Scheme : "https";
+                        swagger.Servers = new List<OpenApiServer>() { new OpenApiServer() { Url = $"{scheme}://{httpReq.Host}" } };
                     });
                 });
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Futterbock v1"));
