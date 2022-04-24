@@ -39,7 +39,7 @@ pipeline {
                    verbose: true,
                    transfers: [
                     sshTransfer(
-                     execCommand: "rm www/futterbock/Futterbock/*"
+                     execCommand: "rm www/futterbock/*"
                     )
                    ])
                  ])
