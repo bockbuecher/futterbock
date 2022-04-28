@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Futterbock.Service.Service;
+using Futterbock.Context;
 
 namespace Futterbock
 {
@@ -26,7 +28,8 @@ namespace Futterbock
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddDbContext<FutterbockContext>();
+            services.AddScoped<IRecipeService, RecipeService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
