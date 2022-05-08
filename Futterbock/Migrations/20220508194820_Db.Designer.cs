@@ -3,14 +3,16 @@ using System;
 using Futterbock.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Futterbock.Migrations
 {
     [DbContext(typeof(FutterbockContext))]
-    partial class FutterbockContextModelSnapshot : ModelSnapshot
+    [Migration("20220508194820_Db")]
+    partial class Db
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

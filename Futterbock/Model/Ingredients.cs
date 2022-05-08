@@ -1,13 +1,15 @@
 ﻿using Futterbock.Enum;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Futterbock.Model
 {
     public class Ingredients
     {
-        public int IngredientsID { get; set; }
+        [Key]
+        public int Id { get; set; }
         public string Name { get; set; }
-        public int Amount { get; set; }
-        public FoodTypes FoodType { get; set; }
-        public int RecipeID { get; set; }
+        public int Description { get; set; }
+        public int Unit { get; set; }
     }
 }

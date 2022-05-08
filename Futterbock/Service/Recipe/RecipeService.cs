@@ -17,16 +17,7 @@ namespace Futterbock.Service.Service
 
         public void CreateRecipe(Recipe recipe)
         {
-            if (_context.Entry(recipe).IsKeySet && recipe.ingredients.Count > 0)
-            {
-                _context.Recipes.Add(recipe);
-            }
-            else
-            {
-                _logger.LogError($"Das Rezept hat keine ID oder keine Zutaten. Bitte überprüfe deine Eingabe");
-            }
-
-            _context.SaveChanges();
+            
         }
     }
 }
