@@ -1,7 +1,9 @@
 ﻿using Futterbock.Context;
 using Futterbock.Model;
 using Microsoft.Extensions.Logging;
-
+using System.Collections.Generic;
+using System.Linq;
+#nullable enable
 namespace Futterbock.Service.Service
 {
     public class RecipeService : IRecipeService
@@ -19,5 +21,16 @@ namespace Futterbock.Service.Service
         {
             
         }
+
+        public IEnumerable<Recipe> SearchRecipe(string searchTern)
+        {
+            return _context.Recipe
+                .Where(
+                    x => x.Name.Contains(searchTern) || 
+                    x.Description.StartsWith(searchTern))
+                .ToList();
+        }
+
+        public Recipe? ViewRecipe(int id) => _context.Recipe.FirstOrDefault(x => x.ID == id);
     }
 }

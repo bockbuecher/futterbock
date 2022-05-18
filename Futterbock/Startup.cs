@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Futterbock.Service.Service;
 using Futterbock.Context;
+using Microsoft.AspNetCore.Routing;
 
 namespace Futterbock
 {
@@ -35,6 +36,7 @@ namespace Futterbock
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Futterbock", Version = "v1" });
             });
+            services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
