@@ -1,5 +1,4 @@
-﻿using Futterbock.Enum;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Futterbock.Model

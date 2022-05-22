@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Futterbock.Service.Service;
 using Futterbock.Context;
+using Futterbock.Repository;
 
 namespace Futterbock
 {
@@ -30,6 +31,8 @@ namespace Futterbock
         {
             services.AddDbContext<FutterbockContext>();
             services.AddScoped<IRecipeService, RecipeService>();
+            services.AddScoped<IngredientsRepository>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
