@@ -13,8 +13,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Futterbock.Service.Service;
 using Futterbock.Context;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Routing;
 
+=======
+using Futterbock.Repository;
+
+>>>>>>> feature/CreateRecipe
 namespace Futterbock
 {
     public class Startup
@@ -31,6 +36,8 @@ namespace Futterbock
         {
             services.AddDbContext<FutterbockContext>();
             services.AddScoped<IRecipeService, RecipeService>();
+            services.AddScoped<IngredientsRepository>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
