@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Build'){
             steps {
-                sh 'dotnet publish -c Release -r linux-x64 --no-restore --self-contained=false /p:PublishSingleFile=true -o publish/'
+                sh 'dotnet publish -c Release -r linux-x64 --no-restore --self-contained=false /p:PublishSingleFile=true /p:UseAppHost=true -o publish/'
             }
         }
         stage('Deploy'){
