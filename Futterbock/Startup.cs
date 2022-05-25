@@ -8,6 +8,8 @@ using Futterbock.Service.Service;
 using Futterbock.Context;
 using Microsoft.AspNetCore.Routing;
 using Futterbock.Repository;
+using System;
+using System.Collections.Generic;
 
 namespace Futterbock
 {
